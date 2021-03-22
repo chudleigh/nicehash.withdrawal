@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <Deterministic>False</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NLog" Version="4.7.8" />
+    <PackageReference Include="PureMVC" Version="4.3.0" />
+    <PackageReference Include="Quartz" Version="3.2.4" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+  </ItemGroup>
+
+  <Target Name="CopyFilesAfterBuild" AfterTargets="AfterBuild">
+    <Copy SourceFiles="Config/appsettings.json" DestinationFolder="$(OutputPath)" />
+  </Target>
+
+  <Target Name="CopyFilesAfterPublish" AfterTargets="Publish">
+    <Copy SourceFiles="Config/appsettings.json" DestinationFolder="$(PublishDir)" />
+  </Target>
+</Project>
