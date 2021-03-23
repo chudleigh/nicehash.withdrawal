@@ -64,9 +64,9 @@ namespace Nicehash.Withdrawal.Mvc.Model.Api.Vo
         /// <summary>
         /// Запрос вывода средств
         /// </summary>
-        public async Task<JsonWithdrawalResponce> PostWithdrawalAsync(decimal amount, string walletId)
+        public async Task<JsonWithdrawalResponce> PostWithdrawalAsync(string coin, decimal amount, string walletId)
         {
-            var request = new JsonWithdrawalRequest { Amount = amount.ToString().Replace(",", "."), Currency = "BTC", WithdrawalAddressId = walletId };
+            var request = new JsonWithdrawalRequest { Amount = amount.ToString().Replace(",", "."), Currency = coin, WithdrawalAddressId = walletId };
             var responce = await PostAsync("/main/api/v2/accounting/withdrawal/", JsonConvert.SerializeObject(request), true);
             return JsonConvert.DeserializeObject<JsonWithdrawalResponce>(responce);
         }

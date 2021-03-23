@@ -76,7 +76,7 @@ namespace Nicehash.Withdrawal.Mvc.Controller.Scheduler
                 Logger.Info($"Запрос вывода средств. Сумма вывода: {Configuration.NiceHash.WithdrawalAmount} {Configuration.NiceHash.Currency}. Комиссия: {fee} {Configuration.NiceHash.Currency}");
 
                 // Оформим вывод
-                var withdrawal = await NiceHashApi.PostWithdrawalAsync(amount, Configuration.Api.WalletId);
+                var withdrawal = await NiceHashApi.PostWithdrawalAsync(Configuration.NiceHash.Currency, amount, Configuration.Api.WalletId);
 
                 if (withdrawal?.Id != null)
                 {
